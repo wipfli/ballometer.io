@@ -33,6 +33,12 @@ git clone https://github.com/maptiler/tileserver-gl.git
 cd tileserver-gl
 node publish.js --no-publish
 cd light
+
+# change in Dockerfile this
+# ENTRYPOINT ["node", "/usr/src/app/", "-p", "80"]
+# to 
+# ENTRYPOINT ["node", "/usr/src/app/", "-p", "80", "--public_url", "https://ballometer.io/tiles/"]
+
 docker build -t tileserver-gl-light .
 
 # cd to where your .mbtiles file is
@@ -45,3 +51,60 @@ docker run --name tileserver-gl-light -d --rm -v $(pwd):/data -p 10001:80 tilese
 
 docker stop tileserver-gl-light
 ```
+
+## ufw
+
+```bash
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow ssh
+ufw enable
+```
+
+## nginx
+
+```bash
+apt update
+apt install nginx
+ufw app list
+ufw allow 'Nginx HTTP'
+ufw status
+systemctl status nginx
+```
+
+Write this content into ```/etc/nginx/sites-available/ballometer.io```:
+
+```
+server {
+    listen 80;
+    listen [::]:80;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name ballometer.io www.ballometer.io;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    
+    location /tiles {
+        return 302 /tiles/;
+    }
+
+    location /tiles/  {
+        proxy_pass    http://localhost:10001/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+Add a symlink with ```ln -s /etc/nginx/sites-available/ballometer.io /etc/nginx/sites-enabled/```. 
+
+Test the config file with ```nginx -t```. If ok, update nginx with ```nginx -s reload```.
+
+

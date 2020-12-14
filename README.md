@@ -107,4 +107,13 @@ Add a symlink with ```ln -s /etc/nginx/sites-available/ballometer.io /etc/nginx/
 
 Test the config file with ```nginx -t```. If ok, update nginx with ```nginx -s reload```.
 
+## auth
 
+```bash
+cd /root
+git clone https://github.com/wipfli/auth.git
+cd auth
+# write a settings.json file with secret, port = 3000, and salt rounds = 10
+# write a users.json file
+node index.js
+```

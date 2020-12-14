@@ -115,5 +115,11 @@ git clone https://github.com/wipfli/auth.git
 cd auth
 # write a settings.json file with secret, port = 3000, and salt rounds = 10
 # write a users.json file
+
+# test configuration with 
 node index.js
+
+# install with
+systemctl enable /root/auth/auth.service
+systemctl start auth
 ```

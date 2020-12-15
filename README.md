@@ -56,7 +56,7 @@ docker build -t tileserver-gl-light .
 
 # run the image with
 
-docker run --name tileserver-gl-light -d --rm -v $(pwd):/data -p 10001:80 tileserver-gl-light
+docker run --name tileserver-gl-light -d --rm -v $(pwd):/data -p 127.0.0.1:10001:80 tileserver-gl-light
 
 # kill it with
 

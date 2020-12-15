@@ -5,6 +5,17 @@ How to set up a ballometer server
 
 I use a standard droplet from digitalocean for USD 5 per month. Operating system is Ubuntu. To store the map data I use a 60 GB block storage device on digitalocean for USD 6 per month.
 
+## zsh
+
+```bash
+apt install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# edit ~/.zshrc
+# uncomment DISABLE_AUTO_UPDATE="true"
+# plugins=(git zsh-autosuggestions)
+```
+
 ## node and npm
 
 ```bash

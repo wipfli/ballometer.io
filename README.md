@@ -147,3 +147,16 @@ node index.js
 systemctl enable /root/auth/auth.service
 systemctl start auth
 ```
+
+## influxdb
+
+```bash
+wget -qO- https://repos.influxdata.com/influxdb.key | apt-key add -
+# run next lines in bash, not zsh
+source /etc/lsb-release
+echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | tee /etc/apt/sources.list.d/influxdb.list
+apt update
+apt install influxdb
+systemctl unmask influxdb.service
+systemctl start influxdb
+```

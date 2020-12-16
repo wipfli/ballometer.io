@@ -159,4 +159,7 @@ apt update
 apt install influxdb
 systemctl unmask influxdb.service
 systemctl start influxdb
+# open influx-cli
+influx
+> CREATE DATABASE ballometer
 ```

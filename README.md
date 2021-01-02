@@ -96,7 +96,7 @@ server {
     server_name ballometer.io www.ballometer.io;
 
     location / {
-        try_files $uri $uri/ =404;
+        try_files $uri /index.html;
     }
     
     location /tiles {
@@ -111,12 +111,12 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
-    
-    location /auth {
-        return 302 /auth/;
+
+    location /api/auth {
+        return 302 /api/auth/;
     }
 
-    location /auth/ {
+    location /api/auth/ {
         proxy_pass  http://localhost:3000/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
@@ -124,7 +124,7 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
-    
+
     location /api/upload {
         return 302 /api/upload/;
     }

@@ -176,6 +176,7 @@ Test the config file with ```nginx -t```. If ok, update nginx with ```nginx -s r
 
 ```bash
 apt install certbot python3-certbot-nginx
+certbot --nginx -d ballometer.io -d www.ballometer.io
 ```
 
 ## auth

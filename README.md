@@ -69,6 +69,8 @@ docker stop tileserver-gl-light
 ufw default deny incoming
 ufw default allow outgoing
 ufw allow ssh
+ufw allow 'Nginx Full'
+ufw delete allow 'Nginx HTTP'
 ufw enable
 ```
 
@@ -169,6 +171,12 @@ server {
 Add a symlink with ```ln -s /etc/nginx/sites-available/ballometer.io /etc/nginx/sites-enabled/```. 
 
 Test the config file with ```nginx -t```. If ok, update nginx with ```nginx -s reload```.
+
+## certbot
+
+```bash
+apt install certbot python3-certbot-nginx
+```
 
 ## auth
 

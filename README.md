@@ -150,6 +150,19 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
+    
+    location /api/edit {
+        return 302 /api/edit/;
+    }
+
+    location /api/edit/ {
+        proxy_pass  http://localhost:3003/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    } 
 }
 ```
 
@@ -202,6 +215,21 @@ npm install
 # install with
 systemctl enable /root/read/read.service
 systemctl start read
+```
+
+## edit
+
+```bash
+cd /root
+git clone https://github.com/wipfli/edit.git
+cd edit
+# write a edit.service file with PORT=3003 and JWT secret
+
+npm install
+
+# install with
+systemctl enable /root/edit/read.service
+systemctl start edit
 ```
 
 ## influxdb

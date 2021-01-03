@@ -169,6 +169,8 @@ git clone https://github.com/wipfli/upload.git
 cd upload
 # write a upload.service file with PORT=3001 and JWT secret
 
+npm install
+
 # install with
 systemctl enable /root/upload/upload.service
 systemctl start upload
@@ -181,6 +183,8 @@ cd /root
 git clone https://github.com/wipfli/read.git
 cd read
 # write a read.service file with PORT=3002
+
+npm install
 
 # install with
 systemctl enable /root/read/read.service

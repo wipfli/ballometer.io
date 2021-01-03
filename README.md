@@ -247,3 +247,11 @@ systemctl start influxdb
 influx
 > CREATE DATABASE ballometer
 ```
+
+## online-ui
+
+On my laptop I clone ```https://github.com/wipfli/online-ui``` and build the frontend with ```npm run build```. The build output gets uploaded to the server with:
+
+```bash
+scp -r build/* root@ballometer.io:/var/www/html
+```

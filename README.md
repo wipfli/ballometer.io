@@ -164,7 +164,11 @@ server {
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
-    } 
+    }
+    
+    location /grafana/ {
+        proxy_pass http://localhost:3004/;
+    }
 }
 ```
 
@@ -263,4 +267,35 @@ On my laptop I clone ```https://github.com/wipfli/online-ui``` and build the fro
 
 ```bash
 scp -r build/* root@ballometer.io:/var/www/html
+```
+
+## grafana
+
+```bash
+wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
+add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+apt update
+apt install grafana
+```
+
+edit ```/etc/grafana/grafana.ini```
+
+```ini
+[server]
+http_port = 3004
+domain = ballometer.io
+root_url = %(protocol)s://%(domain)s:%(http_port)s/grafana
+serve_from_sub_path = true
+
+[users]
+allow_sign_up = false
+
+[auth.anonymous]
+# enable anonymous access
+enabled = true
+```
+
+```bash
+systemctl start grafana-server
+systemctl status grafana-server
 ```

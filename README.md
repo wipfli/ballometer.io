@@ -38,29 +38,47 @@ systemctl status docker
 
 ## tileserver-gl-light
 
+cd to where your tiles.mbtiles (openmaptiles data) and your aviation.mbtiles (as created with https://github.com/wipfli/aviation) lives
+
+Write a config.json file:
+
+```json
+{
+  "options": {
+    "maxSize": 1,
+    "paths": {
+      "root": "/app/node_modules/tileserver-gl-styles",
+      "fonts": "fonts",
+      "styles": "styles",
+      "mbtiles": "/data"
+    }
+  },
+  "styles": {
+    "basic-preview": {
+      "style": "basic-preview/style.json",
+      "tilejson": {
+        "bounds": [
+          -180,
+          -85.0511,
+          180,
+          85.0511
+        ]
+      }
+    }
+  },
+  "data": {
+    "v3": {
+      "mbtiles": "tiles.mbtiles"
+    },
+    "aviation": {
+      "mbtiles": "aviation.mbtiles"
+    }
+  }
+}
+```
+
 ```bash
-cd /root
-git clone https://github.com/maptiler/tileserver-gl.git
-cd tileserver-gl
-node publish.js --no-publish
-cd light
-
-# change in Dockerfile this
-# ENTRYPOINT ["node", "/usr/src/app/", "-p", "80"]
-# to 
-# ENTRYPOINT ["node", "/usr/src/app/", "-p", "80", "--public_url", "https://ballometer.io/tiles/"]
-
-docker build -t tileserver-gl-light .
-
-# cd to where your .mbtiles file is
-
-# run the image with
-
-docker run --name tileserver-gl-light -d --rm -v $(pwd):/data -p 127.0.0.1:10001:80 tileserver-gl-light
-
-# kill it with
-
-docker stop tileserver-gl-light
+docker run --name tileserver-gl -d --rm -v $(pwd):/data -p 127.0.0.1:10001:8080 maptiler/tileserver-gl --public_url https://ballometer.io/tiles/
 ```
 
 ## ufw

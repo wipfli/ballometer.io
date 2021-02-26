@@ -20,6 +20,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 ```bash
 apt install python3-pandas
+apt install python3-venv
 ```
 
 ## node and npm

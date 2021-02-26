@@ -293,6 +293,7 @@ systemctl start influxdb
 # open influx-cli
 influx
 > CREATE DATABASE ballometer
+> CREATE DATABASE weather
 ```
 
 ## online-ui

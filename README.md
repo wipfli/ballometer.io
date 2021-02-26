@@ -16,6 +16,12 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # plugins=(git zsh-autosuggestions)
 ```
 
+## python
+
+```bash
+apt install python3-pandas
+```
+
 ## node and npm
 
 ```bash

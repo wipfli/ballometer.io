@@ -334,3 +334,18 @@ enabled = true
 systemctl start grafana-server
 systemctl status grafana-server
 ```
+
+
+## download-sma
+
+```bash
+cd /root
+git clone https://github.com/wipfli/download-sma.git
+cd download-sma
+
+# follow README.md
+
+# install with
+systemctl enable /root/download-sma/download-sma.service
+systemctl start download-sma
+```

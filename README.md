@@ -203,6 +203,19 @@ server {
     location /grafana/ {
         proxy_pass http://localhost:3004/;
     }
+    
+    location /api/weather {
+        return 302 /api/weather/;
+    }
+
+    location /api/weather/ {
+        proxy_pass http://localhost:3005/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
 }
 ```
 
@@ -348,4 +361,20 @@ cd download-sma
 # install with
 systemctl enable /root/download-sma/download-sma.service
 systemctl start download-sma
+```
+
+
+## weather
+
+```bash
+cd /root
+git clone https://github.com/wipfli/weather.git
+cd weather
+# write a weather.service file with PORT=3005, see README.md
+
+npm install
+
+# install with
+systemctl enable /root/weather/weather.service
+systemctl start weather
 ```

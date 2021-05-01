@@ -94,7 +94,7 @@ Write a config.json file:
 ```
 
 ```bash
-docker run --name tileserver-gl -d --rm -v $(pwd):/data -p 127.0.0.1:10001:8080 maptiler/tileserver-gl --public_url https://ballometer.io/tiles/
+docker run --restart unless-stopped --name tileserver-gl -d -v $(pwd):/data -p 127.0.0.1:10001:8080 maptiler/tileserver-gl --public_url https://ballometer.io/tiles/
 ```
 
 ## ufw

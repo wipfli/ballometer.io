@@ -34,7 +34,7 @@
     
     - name: Add docker repository to apt
       apt_repository:
-        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu $DISTRIB_CODENAME stable
         state: present
 
     - name: Install docker

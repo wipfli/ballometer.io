@@ -28,17 +28,10 @@ jobs:
         pip --version
         pip install ansible
         ansible-playbook --version
-
-    - name: Ansible hello world
-      run: ansible-playbook -i ${{ secrets.HOST_IP }}, hello-world.yml
     
-    - name: Cat hello.txt
-      run: ssh root@${{ secrets.HOST_IP }} cat /root/hello.txt
-    
-    - name: APT update
-      run: ssh root@${{ secrets.HOST_IP }} apt update
+    #- name: Ansible basic.yml
+    #  run: ansible-playbook -i ${{ secrets.HOST_IP }}, basic.yml
 
-    - name: Ansible basic.yml
-      run: ansible-playbook -i ${{ secrets.HOST_IP }}, basic.yml
-
+    - name: Ansible ufw.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, ufw.yml
       

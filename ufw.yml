@@ -1,0 +1,7 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Allow everything and enable UFW
+      community.general.ufw:
+        state: enabled
+        policy: allow

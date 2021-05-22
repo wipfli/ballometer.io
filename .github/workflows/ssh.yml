@@ -16,5 +16,5 @@ jobs:
           chmod 600 /home/runner/.ssh/github_actions
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
           ssh-add /home/runner/.ssh/github_actions
-    - name: ls
-      run: ssh root@${{ secrets.HOST_IP }} ls
+          ssh root@${{ secrets.HOST_IP }} ls
+

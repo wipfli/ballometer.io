@@ -1,4 +1,4 @@
-# ballometer.io
+# server
 How to set up a ballometer server
 
 ## digitalocean

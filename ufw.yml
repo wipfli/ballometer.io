@@ -11,10 +11,13 @@
         default: allow
         direction: outgoing
 
-    - name: ufw allow ssh
+    - name: ufw allow ssh, 80
       community.general.ufw:
         rule: allow
-        port: ssh
+        port: "{{item}}"
+      loop:
+        - ssh
+        - 80
     
     - name: ufw enable
       community.general.ufw:

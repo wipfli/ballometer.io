@@ -1,35 +1,19 @@
 - hosts: all
   remote_user: root
   tasks:
-    - name: Install git
-      apt: 
-        name: git
+    - name: Install git, python, node, nginx
+      apt:
+        name: "{{item}}"
         state: present
-
-    - name: Install pip
-      apt: 
-        name: python3-pip
-        state: present
-
-    - name: Install pandas
-      apt: 
-        name: python3-pandas
-        state: present
-
-    - name: Install venv
-      apt: 
-        name: python3-venv
-        state: present
-
-    - name: Install nodejs
-      apt: 
-        name: nodejs
-        state: present
-
-    - name: Install npm
-      apt: 
-        name: npm
-        state: present
+        update_cache: yes
+      loop:
+        - git
+        - python3-pip
+        - python3-pandas
+        - python3-venv
+        - nodejs
+        - npm
+        - nginx
 
     - name: Install docker dependencies
       apt:
@@ -58,9 +42,3 @@
         name: docker-ce
         state: latest
         update_cache: yes
-    
-    - name: Check docker is running
-      service:
-        name: docker
-        state: started
-        enabled: yes

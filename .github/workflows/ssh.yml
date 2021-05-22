@@ -5,18 +5,17 @@ on: push
 jobs:
   ssh:
     runs-on: ubuntu-latest
+    env:
+      SSH_AUTH_SOCK: /tmp/ssh_agent.sock
     steps:
     - name: Add SSH key
-      env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
           mkdir -p /home/runner/.ssh
           ssh-keyscan ${{ secrets.HOST_IP }} >> /home/runner/.ssh/known_hosts
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/github_actions
           chmod 600 /home/runner/.ssh/github_actions
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add /home/runner/.ssh/github_actions
+
     - name: ls
-      env:
-        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: ssh root@${{ secrets.HOST_IP }} ls

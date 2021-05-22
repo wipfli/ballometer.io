@@ -6,6 +6,13 @@ jobs:
   ssh:
     runs-on: ubuntu-latest
     steps:
-    - run: mkdir -p ~/.ssh
-    - name: Create known_hosts
-      run: ssh-keyscan -H $${{ secrets.HOST_IP }} > ~/.ssh/known_hosts
+    - name: Add SSH key
+      env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      run: |
+          mkdir -p /home/runner/.ssh
+          ssh-keyscan ${{ secrets.HOST_IP }} >> /home/runner/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/github_actions
+          chmod 600 /home/runner/.ssh/github_actions
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+          ssh-add /home/runner/.ssh/github_actions

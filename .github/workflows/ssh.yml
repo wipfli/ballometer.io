@@ -29,9 +29,9 @@ jobs:
         pip install ansible
         ansible-playbook --version
     
-    #- name: Ansible basic.yml
-    #  run: ansible-playbook -i ${{ secrets.HOST_IP }}, basic.yml
+    - name: Ansible basic.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, basic.yml
 
-    - name: Ansible ufw.yml
-      run: ansible-playbook -i ${{ secrets.HOST_IP }}, ufw.yml
+    #- name: Ansible ufw.yml
+    #  run: ansible-playbook -i ${{ secrets.HOST_IP }}, ufw.yml
       

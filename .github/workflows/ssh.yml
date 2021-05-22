@@ -17,5 +17,5 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add /home/runner/.ssh/github_actions
 
-    - name: Install python
-      run: ssh root@${{ secrets.HOST_IP }} python3 --version
+    - name: Git
+      run: ssh root@${{ secrets.HOST_IP }} git --version

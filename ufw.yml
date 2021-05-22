@@ -11,22 +11,7 @@
         default: allow
         direction: outgoing
 
-    - name: ufw allow OpenSSH
+    - name: ufw allow ssh
       community.general.ufw:
         rule: allow
-        name: OpenSSH
-
-    - name: ufw allow 'Nginx Full'
-      community.general.ufw:
-        rule: allow
-        name: 'Nginx Full'
-
-    - name: ufw delete allow 'Nginx HTTP'
-      community.general.ufw:
-        rule: allow
-        name: 'Nginx HTTP'
-        delete: yes
-    
-    - name: ufw enable
-      community.general.ufw:
-        state: enabled
+        port: ssh

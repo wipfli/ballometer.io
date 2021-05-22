@@ -3,7 +3,7 @@ How to set up a ballometer server
 
 ## digitalocean
 
-I use a standard droplet from digitalocean (1 CPU / 2 GB Memory / 25 GB Disk + 60 GB / FRA1 - Ubuntu 20.04 (LTS) x64).
+I use a standard droplet from digitalocean (1 CPU / 2 GB Memory / 25 GB Disk + 60 GB / FRA1 - Ubuntu 20.04 (LTS) x64). We use ssh to access this droplet from a GitHub actions workflow. A private key of this droplet is stored in `SSH_PRIVATE_KEY` which is a GitHub repository secret.
 
 ## zsh
 

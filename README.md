@@ -3,7 +3,7 @@ How to set up a ballometer server
 
 ## digitalocean
 
-I use a standard droplet from digitalocean for USD 5 per month. Operating system is Ubuntu. To store the map data I use a 60 GB block storage device on digitalocean for USD 6 per month.
+I use a standard droplet from digitalocean (1 CPU / 2 GB Memory / 25 GB Disk + 60 GB / FRA1 - Ubuntu 20.04 (LTS) x64).
 
 ## zsh
 

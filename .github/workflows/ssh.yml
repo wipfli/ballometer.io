@@ -6,5 +6,6 @@ jobs:
   ssh:
     runs-on: ubuntu-latest
     steps:
+    - run: mkdir -p ~/.ssh
     - name: Create known_hosts
       run: ssh-keyscan -H $${{ secrets.HOST_IP }} > ~/.ssh/known_hosts

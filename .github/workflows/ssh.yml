@@ -34,3 +34,6 @@ jobs:
     
     - name: Cat hello.txt
       run: ssh root@${{ secrets.HOST_IP }} cat /root/hello.txt
+    
+    - name: Ansible basic.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, basic.yml

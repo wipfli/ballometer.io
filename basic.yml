@@ -1,0 +1,32 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Install git
+      apt: 
+        name: git
+        state: present
+
+    - name: Install pip
+      apt: 
+        name: python3-pip
+        state: present
+
+    - name: Install pandas
+      apt: 
+        name: python3-pandas
+        state: present
+
+    - name: Install venv
+      apt: 
+        name: python3-venv
+        state: present
+
+    - name: Install nodejs
+      apt: 
+        name: nodejs
+        state: present
+
+    - name: Install npm
+      apt: 
+        name: npm
+        state: present

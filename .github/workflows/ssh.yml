@@ -1,13 +1,10 @@
 name: ssh
 
-on: 
-  push:
-    branches:
-    - main
+on: push
 
 jobs:
   ssh:
     runs-on: ubuntu-latest
     steps:
     - name: Create known_hosts
-      run: ssh-keyscan -H $${{ secrets.HOST_IP }} >> ~/.ssh/known_hosts
+      run: ssh-keyscan -H $${{ secrets.HOST_IP }} > ~/.ssh/known_hosts

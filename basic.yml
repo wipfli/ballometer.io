@@ -34,11 +34,27 @@
     
     - name: Add docker repository to apt
       apt_repository:
-        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -c -s) stable 
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable 
         state: present
 
     - name: Install docker
       apt:
         name: docker-ce
+        state: latest
+        update_cache: yes
+
+    - name: Add influx key
+      apt_key:
+        url: https://repos.influxdata.com/influxdb.key
+        state: present
+    
+    - name: Add influx repository to apt
+      apt_repository:
+        repo: deb https://repos.influxdata.com/ubuntu focal stable 
+        state: present
+
+    - name: Install influxdb
+      apt:
+        name: influxdb
         state: latest
         update_cache: yes

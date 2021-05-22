@@ -40,3 +40,5 @@ jobs:
 
     - name: Ansible basic.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, basic.yml
+
+      

@@ -30,3 +30,37 @@
       apt: 
         name: npm
         state: present
+
+    - name: Install docker dependencies
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+    
+    - name: Add docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    
+    - name: Add docker repository to apt
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Install docker
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: yes
+    
+    - name: Check docker is running
+      service:
+        name: docker
+        state: started
+        enabled: yes

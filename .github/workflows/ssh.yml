@@ -17,5 +17,6 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add /home/runner/.ssh/github_actions
 
-    - name: Node
-      run: ssh root@${{ secrets.HOST_IP }} node --version
+    - name: Install ansible
+      run: |
+        pip --verions

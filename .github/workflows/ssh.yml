@@ -24,4 +24,6 @@ jobs:
 
     - name: Install ansible
       run: |
-        pip --verions
+        pip --version
+        pip install ansible
+        ansible-playbook --version

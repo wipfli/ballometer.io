@@ -11,10 +11,10 @@
         default: allow
         direction: outgoing
 
-    - name: ufw allow ssh
+    - name: ufw allow OpenSSH
       community.general.ufw:
         rule: allow
-        name: ssh
+        name: OpenSSH
 
     - name: ufw allow 'Nginx Full'
       community.general.ufw:

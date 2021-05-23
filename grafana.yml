@@ -9,5 +9,5 @@
     - name: Check grafana is running
       ansible.builtin.systemd:
         state: started
-        name: grafana
+        name: grafana-server
   

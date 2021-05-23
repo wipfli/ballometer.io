@@ -1,0 +1,42 @@
+- hosts: all
+  remote_user: root
+  tasks:    
+    - name: Add apt keys
+      apt_key:
+        url: "{{item}}"
+        state: present
+      loop:
+        - https://download.docker.com/linux/ubuntu/gpg
+        - https://repos.influxdata.com/influxdb.key
+        - https://packages.grafana.com/gpg.key
+    
+    - name: Add repositories to apt
+      apt_repository:
+        repo: "{{item}}"
+        state: present
+      loop:
+        - deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable 
+        - deb https://repos.influxdata.com/ubuntu focal stable
+        - deb https://packages.grafana.com/oss/deb stable main
+
+    - name: Install packages
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      loop:
+        - git
+        - python3-pip
+        - python3-pandas
+        - python3-venv
+        - nodejs
+        - npm
+        - nginx
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+        - docker-ce
+        - influxdb
+        - grafana

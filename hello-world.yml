@@ -1,7 +1,0 @@
-- hosts: all
-  remote_user: root
-  tasks:
-    - name: Create /root/hello.txt
-      copy:
-        content: hello world
-        dest: /root/hello.txt

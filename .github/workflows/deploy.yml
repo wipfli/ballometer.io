@@ -1,9 +1,9 @@
-name: ssh
+name: deploy
 
 on: push
 
 jobs:
-  ssh:
+  deploy:
     runs-on: ubuntu-latest
     env:
       SSH_AUTH_SOCK: /tmp/ssh_agent.sock

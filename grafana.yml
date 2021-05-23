@@ -3,7 +3,7 @@
   tasks:    
     - name: Copy /etc/grafana/grafana.ini
       ansible.builtin.copy:
-        src: grafana.ini
+        src: rootfs-overlay/etc/grafana/grafana.ini
         dest: /etc/grafana/grafana.ini
 
     - name: Check grafana is running

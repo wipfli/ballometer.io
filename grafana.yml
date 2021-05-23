@@ -5,3 +5,9 @@
       ansible.builtin.copy:
         src: grafana.ini
         dest: /etc/grafana/grafana.ini
+
+    - name: Check grafana is running
+      ansible.builtin.systemd:
+        state: started
+        name: grafana
+  

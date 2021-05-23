@@ -24,10 +24,7 @@ jobs:
         python-version: 3.8
 
     - name: Install ansible
-      run: |
-        pip --version
-        pip install ansible
-        ansible-playbook --version
+      run: pip install ansible
     
     # - name: Ansible apt.yml
     #  run: ansible-playbook -i ${{ secrets.HOST_IP }}, apt.yml

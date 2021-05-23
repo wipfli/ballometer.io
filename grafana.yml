@@ -10,4 +10,3 @@
       ansible.builtin.systemd:
         state: started
         name: grafana-server
-  

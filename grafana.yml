@@ -1,0 +1,7 @@
+- hosts: all
+  remote_user: root
+  tasks:    
+    - name: Copy /etc/grafana/grafana.ini
+      ansible.builtin.copy:
+        src: grafana.ini
+        dest: /etc/grafana/grafana.ini

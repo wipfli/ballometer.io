@@ -1,0 +1,7 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Clone
+      git:
+        repo: git@github.com:ballometer/api-auth.git
+        dest: /root/api-auth

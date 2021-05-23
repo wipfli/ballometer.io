@@ -1,0 +1,15 @@
+[Unit]
+Description=Authentication service for the ballometer server with json web tokens
+
+[Service]
+Environment=SECRET="JWT_SECRET"
+Environment=PORT=3000
+Environment=SALT_ROUNDS=10
+WorkingDirectory=/root/api-auth
+ExecStart=node index.js
+Restart=always
+TimeoutStopSec=30
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -15,4 +15,4 @@
       ansible.builtin.replace:
         path: /root/api-auth/api-auth.service
         regexp: 'JWT_SECRET'
-        replace: 'my-secret'
+        replace: "{{ JWT_SECRET }}"

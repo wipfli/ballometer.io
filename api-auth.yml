@@ -3,5 +3,5 @@
   tasks:
     - name: Clone
       git:
-        repo: git@github.com:ballometer/api-auth.git
+        repo: https://github.com/ballometer/api-auth.git
         dest: /root/api-auth

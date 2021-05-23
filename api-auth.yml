@@ -5,3 +5,14 @@
       git:
         repo: https://github.com/ballometer/api-auth.git
         dest: /root/api-auth
+
+    - name: Copy /root/api-auth/api-auth.service
+      ansible.builtin.copy:
+        src: rootfs-overlay/root/api-auth/api-auth.service
+        dest: /root/api-auth/api-auth.service
+
+    - name: Inject JWT_SECRET
+      ansible.builtin.replace:
+        path: /root/api-auth/api-auth.service
+        regexp: 'JWT_SECRET'
+        replace: 'my-secret'

@@ -26,14 +26,14 @@ jobs:
     - name: Install ansible
       run: pip install ansible
     
-    # - name: Ansible apt.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, apt.yml
+    - name: Ansible apt.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, apt.yml
 
-    # - name: Ansible ufw.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, ufw.yml
+    - name: Ansible ufw.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, ufw.yml
 
-    # - name: Ansible grafana.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, grafana.yml
+    - name: Ansible grafana.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, grafana.yml
 
     - name: Ansible api-auth.yml
-      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-auth.yml --extra-vars "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-auth.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"

@@ -1,0 +1,13 @@
+[Unit]
+Description=Provide read access to weather station measurements
+
+[Service]
+WorkingDirectory=/root/api-weather
+Environment=PORT=3005
+ExecStart=node index.js
+Restart=always
+TimeoutStopSec=30
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

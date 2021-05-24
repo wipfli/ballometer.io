@@ -19,3 +19,8 @@
         - requests
         - influxdb
         - pandas
+
+    - name: Check service is running
+      ansible.builtin.systemd:
+        state: started
+        name: download-sma

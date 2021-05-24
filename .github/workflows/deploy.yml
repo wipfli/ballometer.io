@@ -45,4 +45,7 @@ jobs:
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-write.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
 
     - name: Ansible api-read.yml
-      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-read.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-read.yml
+
+    - name: Ansible api-edit.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-edit.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"

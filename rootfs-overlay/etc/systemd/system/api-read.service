@@ -1,0 +1,13 @@
+[Unit]
+Description=Node express server for reading measurement data from a ballometer server
+
+[Service]
+WorkingDirectory=/root/api-read
+Environment=PORT=3002
+ExecStart=node index.js
+Restart=always
+TimeoutStopSec=30
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Clone
+      git:
+        repo: https://github.com/ballometer/api-read.git
+        dest: /root/api-read
+
+    - name: Copy /etc/grafana/grafana.ini
+      ansible.builtin.copy:
+        src: rootfs-overlay/etc/systemd/system/api-read.service
+        dest: /etc/systemd/system/api-read.service
+
+    - name: Install npm packages
+      community.general.npm:
+        path: /root/api-read
+
+    - name: Check service is running
+      ansible.builtin.systemd:
+        state: started
+        name: api-read

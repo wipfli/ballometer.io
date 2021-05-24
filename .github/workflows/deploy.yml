@@ -28,7 +28,7 @@ jobs:
 
     - name: Install ansible
       run: pip install ansible
-    
+
     - name: Ansible apt.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, apt.yml
 
@@ -43,3 +43,6 @@ jobs:
 
     - name: Ansible api-write.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-write.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+
+    - name: Ansible api-read.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-read.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"

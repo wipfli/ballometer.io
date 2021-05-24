@@ -49,3 +49,6 @@ jobs:
 
     - name: Ansible api-edit.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-edit.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+
+    - name: Ansible api-weather.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-weather.yml

@@ -3,19 +3,19 @@
   tasks:
     - name: Clone
       git:
-        repo: https://github.com/ballometer/api-read.git
-        dest: /root/api-read
+        repo: https://github.com/ballometer/api-weather.git
+        dest: /root/api-weather
 
     - name: Copy service file
       ansible.builtin.copy:
-        src: rootfs-overlay/etc/systemd/system/api-read.service
-        dest: /etc/systemd/system/api-read.service
+        src: rootfs-overlay/etc/systemd/system/api-weather.service
+        dest: /etc/systemd/system/api-weather.service
 
     - name: Install npm packages
       community.general.npm:
-        path: /root/api-read
+        path: /root/api-weather
 
     - name: Check service is running
       ansible.builtin.systemd:
         state: started
-        name: api-read
+        name: api-weather

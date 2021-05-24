@@ -1,6 +1,9 @@
 name: deploy
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -34,3 +37,6 @@ jobs:
 
     - name: Ansible grafana.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, grafana.yml
+
+    - name: Ansible api-auth.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-auth.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"

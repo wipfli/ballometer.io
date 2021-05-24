@@ -1,0 +1,27 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Clone
+      git:
+        repo: https://github.com/ballometer/api-auth.git
+        dest: /root/api-auth
+
+    - name: Create service file
+      ansible.builtin.template:
+        src: rootfs-overlay/etc/systemd/system/api-auth.service.j2
+        dest: /etc/systemd/system/api-auth.service
+
+    - name: Create empty users.json
+      ansible.builtin.lineinfile:
+        path: /root/api-auth/users.json
+        line: "[]"
+        create: yes
+
+    - name: Install npm packages
+      community.general.npm:
+        path: /root/api-auth
+
+    - name: Check service is running
+      ansible.builtin.systemd:
+        state: started
+        name: api-auth

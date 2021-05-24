@@ -16,3 +16,8 @@
         path: /root/api-auth/api-auth.service
         regexp: 'JWT_SECRET'
         replace: "{{ JWT_SECRET }}"
+    
+    - name: Copy users.json
+      ansible.builtin.copy:
+        src: users.json
+        dest: /root/api-auth/user.json

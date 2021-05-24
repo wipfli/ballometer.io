@@ -24,7 +24,7 @@ Ballometer server uses JSON web tokens for user authentication and the token gen
 ]
 ```
 
-The  `api-auth.yml` ansible playbook creates `users.json` on the ballometer server from within a GitHub actions workflow. Store the target content of `users.json` in the `USERS_JSON` GitHub secret.
+The  `api-auth.yml` ansible playbook creates `users.json` on the ballometer server from within a GitHub actions workflow. Store the target content of `users.json` in the `USERS_JSON` GitHub secret and store the JWT secret in the `JWT_SECRET` GitHub secret.
 
 ## zsh
 

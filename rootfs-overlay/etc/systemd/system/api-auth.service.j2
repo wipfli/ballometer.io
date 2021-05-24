@@ -2,7 +2,7 @@
 Description=Authentication service for the ballometer server with json web tokens
 
 [Service]
-Environment=SECRET="JWT_SECRET"
+Environment=SECRET="{{JWT_SECRET}}"
 Environment=PORT=3000
 Environment=SALT_ROUNDS=10
 WorkingDirectory=/root/api-auth

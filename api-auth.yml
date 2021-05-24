@@ -23,6 +23,10 @@
         line: "[]"
         create: yes
 
+    - name: Install npm packages
+      community.general.npm:
+        path: /root/api-auth
+
     - name: Check service is running
       ansible.builtin.systemd:
         state: started

@@ -1,0 +1,26 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Clone
+      git:
+        repo: https://github.com/ballometer/download-sma.git
+        dest: /root/download-sma
+
+    - name: Copy service file
+      ansible.builtin.copy:
+        src: rootfs-overlay/etc/systemd/system/download-sma.service
+        dest: /etc/systemd/system/download-sma.service
+
+    - name: Install pip packages
+      pip:
+        name: "{{item}}"
+        virtualenv: /root/download-sma/venv
+      loop:
+        - requests
+        - influxdb
+        - pandas
+
+    - name: Check service is running
+      ansible.builtin.systemd:
+        state: started
+        name: download-sma

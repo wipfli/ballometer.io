@@ -1,0 +1,13 @@
+[Unit]
+Description=Download weather station measurements from MeteoSchweiz and store them in InfluxDB
+After=network.target
+
+[Service]
+WorkingDirectory=/root/download-sma
+ExecStart=/root/download-sma/venv/bin/python /root/download-sma/download.py
+Restart=always
+TimeoutStopSec=30
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

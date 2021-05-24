@@ -52,3 +52,6 @@ jobs:
 
     - name: Ansible api-weather.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-weather.yml
+
+    - name: Ansible download-sma.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, download-sma.yml

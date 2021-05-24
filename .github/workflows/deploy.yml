@@ -40,3 +40,6 @@ jobs:
 
     - name: Ansible api-auth.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-auth.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+
+    - name: Ansible api-write.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-write.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"

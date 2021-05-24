@@ -36,6 +36,4 @@ jobs:
     #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, grafana.yml
 
     - name: Ansible api-auth.yml
-      run: |
-        echo ${{ secrets.USERS_JSON }} > users.json
-        ansible-playbook -i ${{ secrets.HOST_IP }}, api-auth.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-auth.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"

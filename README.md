@@ -3,28 +3,7 @@ How to set up a ballometer server
 
 ## digitalocean
 
-I use a standard droplet from digitalocean (1 CPU / 2 GB Memory / 25 GB Disk + 60 GB / FRA1 - Ubuntu 20.04 (LTS) x64). We use ssh to access this droplet from a GitHub actions workflow. A private key of this droplet is stored in `SSH_PRIVATE_KEY` which is a GitHub repository secret. The IP address of the droplet is stored in the `HOST_IP` GitHub secret.
-
-## `api-auth`
-
-Ballometer server uses JSON web tokens for user authentication and the token generation is handled by [`api-auth`](https://github.com/ballometer/api-auth/). Usernames and password hashes are stored in `users.json` which could look like this:
-
-```json
-[
-    {
-        "username": "john",
-        "hash": "$2b$10$wuzj/D1bQNGCFILsp7C97.CaAO3T5SSIgfc1oqCse72O2ctdw8CwW",
-        "role": "admin"
-    }, 
-    {
-        "username": "anna",
-        "hash": "$2b$10$4wD3/1.sAggLX4Wx.73XMu5aabxz29UpXQNuhMN.g8g9FWxjARxfu",
-        "role": "member"
-    }
-]
-```
-
-The  `api-auth.yml` ansible playbook creates `users.json` on the ballometer server from within a GitHub actions workflow. Store the target content of `users.json` in the `USERS_JSON` GitHub secret and store the JWT secret in the `JWT_SECRET` GitHub secret.
+I use a standard droplet from digitalocean (1 CPU / 2 GB Memory / 25 GB Disk + 60 GB / FRA1 - Ubuntu 20.04 (LTS) x64). We use ssh to access this droplet from a GitHub actions workflow. A private key of this droplet is stored in `SSH_PRIVATE_KEY` which is a GitHub repository secret. The IP address of the droplet is stored in the `HOST_IP` GitHub secret. Store the JWT secret in the `JWT_SECRET` GitHub secret.
 
 ## zsh
 

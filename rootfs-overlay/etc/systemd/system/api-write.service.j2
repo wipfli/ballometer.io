@@ -1,0 +1,14 @@
+[Unit]
+Description=Node express server for writing measurement data to a ballometer server
+
+[Service]
+WorkingDirectory=/root/api-write
+Environment=PORT=3001
+Environment=JWT_SECRET="{{JWT_SECRET}}"
+ExecStart=node index.js
+Restart=always
+TimeoutStopSec=30
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

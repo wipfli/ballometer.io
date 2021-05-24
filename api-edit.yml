@@ -1,0 +1,21 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Clone
+      git:
+        repo: https://github.com/ballometer/api-edit.git
+        dest: /root/api-edit
+
+    - name: Create service file
+      ansible.builtin.template:
+        src: rootfs-overlay/etc/systemd/system/api-edit.service.j2
+        dest: /etc/systemd/system/api-edit.service
+
+    - name: Install npm packages
+      community.general.npm:
+        path: /root/api-edit
+
+    - name: Check service is running
+      ansible.builtin.systemd:
+        state: started
+        name: api-edit

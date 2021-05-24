@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - download-sma
 
 jobs:
   deploy:
@@ -30,29 +29,29 @@ jobs:
     - name: Install ansible
       run: pip install ansible
 
-    # - name: Ansible apt.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, apt.yml
+    - name: Ansible apt.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, apt.yml
 
-    # - name: Ansible ufw.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, ufw.yml
+    - name: Ansible ufw.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, ufw.yml
 
-    # - name: Ansible grafana.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, grafana.yml
+    - name: Ansible grafana.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, grafana.yml
 
-    # - name: Ansible api-auth.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-auth.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+    - name: Ansible api-auth.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-auth.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
 
-    # - name: Ansible api-write.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-write.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+    - name: Ansible api-write.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-write.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
 
-    # - name: Ansible api-read.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-read.yml
+    - name: Ansible api-read.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-read.yml
 
-    # - name: Ansible api-edit.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-edit.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+    - name: Ansible api-edit.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-edit.yml -e "JWT_SECRET=${{ secrets.JWT_SECRET }}"
 
-    # - name: Ansible api-weather.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-weather.yml
+    - name: Ansible api-weather.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-weather.yml
 
     - name: Ansible download-sma.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, download-sma.yml

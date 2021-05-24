@@ -40,3 +40,4 @@
         - docker-ce
         - influxdb
         - grafana
+        - virtualenv

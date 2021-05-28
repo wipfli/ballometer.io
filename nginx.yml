@@ -1,18 +1,26 @@
 - hosts: all
   remote_user: root
   tasks:
-    - name: Copy api.ballometer.io
+    - name: Copy sites-available
       ansible.builtin.copy:
-        src: rootfs-overlay/etc/nginx/sites-available/api.ballometer.io
-        dest: /etc/nginx/sites-available/api.ballometer.io
+        src: rootfs-overlay/etc/nginx/sites-available/{{item}}.ballometer.io
+        dest: /etc/nginx/sites-available/{{item}}.ballometer.io
       notify: Restart Nginx
+      loop:
+        - api
+        - tiles
+        - grafana
 
-    - name: Enable new site
+    - name: Enable sites
       file:
-        src: /etc/nginx/sites-available/api.ballometer.io
-        dest: /etc/nginx/sites-enabled/api.ballometer.io
+        src: /etc/nginx/sites-available/{{item}}.ballometer.io
+        dest: /etc/nginx/sites-enabled/{{item}}.ballometer.io
         state: link
       notify: Restart Nginx
+      loop:
+        - api
+        - tiles
+        - grafana
 
   handlers:
     - name: Restart Nginx

@@ -15,7 +15,7 @@
       ansible.builtin.copy:
         src: rootfs-overlay/root/api-auth/users.json
         dest: /root/api-auth/users.json
-        force: no
+        backup: yes
 
     - name: Install npm packages
       community.general.npm:

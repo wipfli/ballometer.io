@@ -56,10 +56,6 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 
-    location /grafana/ {
-        proxy_pass http://localhost:3004/;
-    }
-
     location /weather {
         return 302 /weather/;
     }

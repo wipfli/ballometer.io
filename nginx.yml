@@ -5,3 +5,17 @@
       ansible.builtin.copy:
         src: rootfs-overlay/etc/nginx/sites-available/api.ballometer.io
         dest: /etc/nginx/sites-available/api.ballometer.io
+      notify: Restart Nginx
+
+    - name: Enable new site
+      file:
+        src: /etc/nginx/sites-available/api.ballometer.io
+        dest: /etc/nginx/sites-enabled/api.ballometer.io
+        state: link
+      notify: Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted

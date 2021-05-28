@@ -1,0 +1,7 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Copy api.ballometer.io
+      ansible.builtin.copy:
+        src: rootfs-overlay/etc/nginx/sites-available/api.ballometer.io
+        dest: /etc/nginx/sites-available/api.ballometer.io

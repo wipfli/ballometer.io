@@ -15,11 +15,12 @@
       ansible.builtin.copy:
         src: rootfs-overlay/root/api-auth/users.json
         dest: /root/api-auth/users.json
-        backup: yes
+        force: no
 
     - name: Install npm packages
       community.general.npm:
         path: /root/api-auth
+        ci: yes
 
     - name: Check service is running
       ansible.builtin.systemd:

@@ -11,15 +11,16 @@
         src: rootfs-overlay/etc/systemd/system/api-auth.service.j2
         dest: /etc/systemd/system/api-auth.service
 
-    - name: Create empty users.json
-      ansible.builtin.lineinfile:
-        path: /root/api-auth/users.json
-        line: "[]"
-        create: yes
+    - name: Copy users.json if absent
+      ansible.builtin.copy:
+        src: rootfs-overlay/root/api-auth/users.json
+        dest: /root/api-auth/users.json
+        force: no
 
     - name: Install npm packages
       community.general.npm:
         path: /root/api-auth
+        ci: yes
 
     - name: Check service is running
       ansible.builtin.systemd:

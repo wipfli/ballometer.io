@@ -55,3 +55,6 @@ jobs:
 
     - name: Ansible download-sma.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, download-sma.yml
+
+    - name: Ansible nginx.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, nginx.yml

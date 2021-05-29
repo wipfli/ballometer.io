@@ -60,4 +60,4 @@ jobs:
     #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, nginx.yml
 
     - name: Ansible tiles.yml
-      run: ansible-playbook -i ${{ secrets.HOST_IP }}, api-tiles.yml -e "MBTILES_URL=${{ secrets.MBTILES_URL }} VOLUME_PATH=${{ secrets.VOLUME_PATH }}"
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, tiles.yml -e "MBTILES_URL=${{ secrets.MBTILES_URL }} VOLUME_PATH=${{ secrets.VOLUME_PATH }}"

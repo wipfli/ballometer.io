@@ -5,3 +5,4 @@
       get_url:
         url: "{{ MBTILES_URL }}"
         dest: "{{ VOLUME_PATH }}planet.mbtiles"
+        tmp_dest: "{{ VOLUME_PATH }}planet.mbtiles"

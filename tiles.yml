@@ -1,8 +1,5 @@
 - hosts: all
   remote_user: root
-  tasks:    
+  tasks:
     - name: Download planet.mbtiles
-      get_url:
-        url: "{{ MBTILES_URL }}"
-        dest: "{{ VOLUME_PATH }}planet.mbtiles"
-        tmp_dest: "{{ VOLUME_PATH }}"
+      ansible.builtin.shell: wget -c "{{ MBTILES_URL }}" -O "{{ VOLUME_PATH }}planet.mbtiles"

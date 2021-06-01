@@ -5,3 +5,5 @@
       ansible.builtin.shell: wget -c "{{ MBTILES_URL }}" -O "{{ VOLUME_PATH }}planet.mbtiles"
       async: 3600
       poll: 10
+      args:
+        - creates: "{{ VOLUME_PATH }}planet.mbtiles"

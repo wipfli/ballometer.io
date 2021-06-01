@@ -2,4 +2,6 @@
   remote_user: root
   tasks:
     - name: Download planet.mbtiles
-      ansible.builtin.shell: wget -c "{{ MBTILES_URL }}" -O "{{ VOLUME_PATH }}planet.mbtiles"
+      ansible.builtin.shell: wget -c https://ballometer.io/home/titlebild.jpg -O "{{ VOLUME_PATH }}planet.mbtiles"
+      args:
+        creates: "{{ VOLUME_PATH }}planet.mbtiles"

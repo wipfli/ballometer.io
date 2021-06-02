@@ -21,7 +21,7 @@
         dest: "{{ VOLUME_PATH }}config.json"
 
     - name: Docker run
-      docker:
+      community.docker.docker_container:
         name: tileserver-gl
         image: maptiler/tileserver
         state: reloaded

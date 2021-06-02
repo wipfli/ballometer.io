@@ -15,6 +15,12 @@
       args:
         creates: "{{ VOLUME_PATH }}aviation.mbtiles"
 
+    - name: mkdir -p /root/tiles/
+      ansible.builtin.file:
+        path: /root/tiles/
+        recurse: yes
+        state: directory
+
     - name: Copy /root/tiles/config.json
       ansible.builtin.copy:
         src: rootfs-overlay/root/tiles/config.json

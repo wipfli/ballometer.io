@@ -20,6 +20,10 @@
         src: rootfs-overlay/mnt/volume/config.json
         dest: "{{ VOLUME_PATH }}config.json"
 
+    - name: Install docker python package
+      pip:
+        name: docker
+
     - name: Docker run
       community.docker.docker_container:
         name: tileserver-gl

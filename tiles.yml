@@ -7,3 +7,29 @@
       poll: 10
       args:
         creates: "{{ VOLUME_PATH }}planet.mbtiles"
+
+    - name: Download aviation.mbtiles
+      ansible.builtin.shell: wget -c https://github.com/wipfli/aviation/releases/download/v1.0.0/aviation.mbtiles -O "{{ VOLUME_PATH }}aviation.mbtiles"
+      async: 3600
+      poll: 10
+      args:
+        creates: "{{ VOLUME_PATH }}aviation.mbtiles"
+
+    - name: Copy config.json
+      ansible.builtin.copy:
+        src: rootfs-overlay/mnt/volume/config.json
+        dest: "{{ VOLUME_PATH }}config.json"
+
+    - name: Install docker python package
+      pip:
+        name: docker
+
+    - name: Docker run
+      community.docker.docker_container:
+        name: tileserver-gl
+        image: maptiler/tileserver-gl
+        state: started
+        ports:
+          - "127.0.0.1:3006:80"
+        volumes:
+          - "{{ VOLUME_PATH }}:/data"

@@ -27,7 +27,7 @@
     - name: Docker run
       community.docker.docker_container:
         name: tileserver-gl
-        image: maptiler/tileserver
+        image: maptiler/tileserver-gl
         state: started
         ports:
           - "0.0.0.0:10001:80"

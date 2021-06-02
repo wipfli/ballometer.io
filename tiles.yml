@@ -7,3 +7,10 @@
       poll: 10
       args:
         creates: "{{ VOLUME_PATH }}planet.mbtiles"
+
+    - name: Download aviation.mbtiles
+      ansible.builtin.shell: wget -c https://github.com/wipfli/aviation/releases/download/v1.0.0/aviation.mbtiles -O "{{ VOLUME_PATH }}aviation.mbtiles"
+      async: 3600
+      poll: 10
+      args:
+        creates: "{{ VOLUME_PATH }}aviation.mbtiles"

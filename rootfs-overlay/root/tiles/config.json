@@ -1,0 +1,32 @@
+{
+    "options": {
+        "maxSize": 1,
+        "paths": {
+            "root": "/app/node_modules/tileserver-gl-styles",
+            "fonts": "fonts",
+            "styles": "styles",
+            "mbtiles": "/data"
+        }
+    },
+    "styles": {
+        "basic-preview": {
+            "style": "basic-preview/style.json",
+            "tilejson": {
+                "bounds": [
+                    -180,
+                    -85.0511,
+                    180,
+                    85.0511
+                ]
+            }
+        }
+    },
+    "data": {
+        "v3": {
+            "mbtiles": "planet.mbtiles"
+        },
+        "aviation": {
+            "mbtiles": "aviation.mbtiles"
+        }
+    }
+}

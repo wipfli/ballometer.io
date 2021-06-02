@@ -14,3 +14,8 @@
       poll: 10
       args:
         creates: "{{ VOLUME_PATH }}aviation.mbtiles"
+
+    - name: Copy /root/tiles/config.json
+      ansible.builtin.copy:
+        src: rootfs-overlay/root/tiles/config.json
+        dest: /root/tiles/config.json

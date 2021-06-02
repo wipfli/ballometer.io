@@ -15,13 +15,18 @@
       args:
         creates: "{{ VOLUME_PATH }}aviation.mbtiles"
 
-    - name: mkdir -p /root/tiles/
-      ansible.builtin.file:
-        path: /root/tiles/
-        recurse: yes
-        state: directory
-
-    - name: Copy /root/tiles/config.json
+    - name: Copy config.json
       ansible.builtin.copy:
-        src: rootfs-overlay/root/tiles/config.json
-        dest: /root/tiles/config.json
+        src: rootfs-overlay/mnt/volume/config.json
+        dest: "{{ VOLUME_PATH }}config.json"
+
+    - name: Docker run
+      docker:
+        name: tileserver-gl
+        image: maptiler/tileserver
+        state: reloaded
+        pull: always
+        ports:
+          - "0.0.0.0:10001:80"
+        volumes:
+          - "{{ VOLUME_PATH }}:/data"

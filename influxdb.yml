@@ -11,3 +11,10 @@
 
     - name: Create database weather
       ansible.builtin.shell: influx -execute 'CREATE DATABASE weather'
+
+    - name: Download from remote to github
+      ansible.posix.synchronize:
+        mode: pull
+        src: /root/influx/influx-backup
+        dest: influx-backup
+    

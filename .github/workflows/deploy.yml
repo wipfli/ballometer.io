@@ -65,3 +65,6 @@ jobs:
 
     - name: Ansible influxdb.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, influxdb.yml
+    
+    - name: Show downloaded files
+      run: ls influx-backup/*

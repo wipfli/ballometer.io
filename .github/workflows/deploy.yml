@@ -62,3 +62,6 @@ jobs:
 
     # - name: Ansible tiles.yml
     #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, tiles.yml -e "MBTILES_URL=${{ secrets.MBTILES_URL }} VOLUME_PATH=${{ secrets.VOLUME_PATH }}"
+
+    - name: Ansible influxdb.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, influxdb.yml

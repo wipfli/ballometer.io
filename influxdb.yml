@@ -1,0 +1,7 @@
+- hosts: all
+  remote_user: root
+  tasks:    
+    - name: Check influxdb is running
+      ansible.builtin.systemd:
+        state: started
+        name: influxdb

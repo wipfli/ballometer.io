@@ -1,0 +1,13 @@
+- hosts: all
+  remote_user: root
+  tasks:    
+    - name: Check influxdb is running
+      ansible.builtin.systemd:
+        state: started
+        name: influxdb
+
+    - name: Create database ballometer
+      ansible.builtin.shell: influx -execute 'CREATE DATABASE ballometer'
+
+    - name: Create database weather
+      ansible.builtin.shell: influx -execute 'CREATE DATABASE weather'

@@ -5,6 +5,10 @@ How to set up a ballometer server
 
 I use a standard droplet from digitalocean (1 CPU / 2 GB Memory / 25 GB Disk + 60 GB / FRA1 - Ubuntu 21.04 (LTS) x64). We use ssh to access this droplet from a GitHub actions workflow. A private key of this droplet is stored in `SSH_PRIVATE_KEY` which is a GitHub repository secret. The IP address of the droplet is stored in the `HOST_IP` GitHub secret. Store the JWT secret in the `JWT_SECRET` GitHub secret.
 
+`VOLUME_PATH` holds the path to where the digitalocean volume is mounted, e.g. `/mnt/volume_fra1_02/`.
+
+`MBTILES_URL` holds the URL from where the openmaptiles data for the maps are downloaded, e.g. `https://data.maptiler.com/download/***/maptiler-osm-2017-07-03-v3.6.1-planet.mbtiles`.
+
 ## zsh
 
 ```bash

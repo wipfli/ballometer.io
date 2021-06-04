@@ -5,3 +5,9 @@
       ansible.builtin.systemd:
         state: started
         name: influxdb
+
+    - name: Create database ballometer
+      ansible.builtin.shell: influx -execute 'CREATE DATABASE ballometer'
+
+    - name: Create database weather
+      ansible.builtin.shell: influx -execute 'CREATE DATABASE weather'

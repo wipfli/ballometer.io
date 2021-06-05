@@ -9,6 +9,30 @@ I use a standard droplet from digitalocean (1 CPU / 2 GB Memory / 25 GB Disk + 6
 
 `MBTILES_URL` holds the URL from where the openmaptiles data for the maps are downloaded, e.g. `https://data.maptiler.com/download/***/maptiler-osm-2017-07-03-v3.6.1-planet.mbtiles`.
 
+## backup
+
+You can create a backup of the data stored in influxdb and the `users.json` file with a script which runs on a separate machine. The script will ssh into your server, create the backup files of the influxdb data, and pull it to you backup machine with rsync. You can do full backups with `backup-full.sh` covering all data stored in influxdb, or you can only backup the last 48 hours data with `backup-48h.sh`.
+
+Create a full backup with:
+
+```bash
+git clone https://github.com/ballometer/server.git
+cd server
+HOST_IP=<ip-of-your-server> ./backup-full.sh
+```
+
+The data will be stored in `backup-data`.
+
+Create a backup of the last 48 hours with
+```bash
+HOST_IP=<ip-of-your-server> ./backup-48h.sh
+```
+
+To restore the influxdb data and `users.json`, run:
+```bash
+HOST_IP=<ip-of-your-server> ./restore.sh
+```
+
 ## zsh
 
 ```bash

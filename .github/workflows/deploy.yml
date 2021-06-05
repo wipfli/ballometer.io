@@ -28,7 +28,7 @@ jobs:
         python-version: 3.8
 
     - name: Access backup machine
-      run: ssh ${{ BACKUP_USER }}@${{ BACKUP_HOST }} echo /home/${{ BACKUP_USER }}/hello.txt
+      run: ssh ${{ secrets.BACKUP_USER }}@${{ secrets.BACKUP_HOST }} echo /home/${{ secrets.BACKUP_USER }}/hello.txt
 
     # - name: Install ansible
     #   run: pip install ansible

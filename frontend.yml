@@ -1,0 +1,17 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Clone
+      git:
+        repo: https://github.com/ballometer/frontend.git
+        dest: /root/frontend
+
+    - name: Install npm packages
+      community.general.npm:
+        path: /root/frontend
+        ci: yes
+
+    - name: Build
+      ansible.builtin.shell:
+        cmd: npm run build
+        chdir: /root/frontend

@@ -15,3 +15,6 @@
       ansible.builtin.shell:
         cmd: npm run build
         chdir: /root/frontend
+
+    - name: Copy to /var/www/html
+      ansible.builtin.shell: cp -R /root/frontend/build/* /var/www/html/

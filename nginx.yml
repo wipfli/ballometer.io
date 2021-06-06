@@ -3,26 +3,30 @@
   tasks:
     - name: Copy sites-available
       ansible.builtin.copy:
-        src: rootfs-overlay/etc/nginx/sites-available/{{item}}.ballometer.io
-        dest: /etc/nginx/sites-available/{{item}}.ballometer.io
-      notify: Restart Nginx
+        src: rootfs-overlay/etc/nginx/sites-available/{{item}}ballometer.io
+        dest: /etc/nginx/sites-available/{{item}}ballometer.io
       loop:
-        - api
-        - tiles
-        - grafana
+        - api.
+        - tiles.
+        - grafana.
+        - ""
 
     - name: Enable sites
       file:
-        src: /etc/nginx/sites-available/{{item}}.ballometer.io
-        dest: /etc/nginx/sites-enabled/{{item}}.ballometer.io
+        src: /etc/nginx/sites-available/{{item}}ballometer.io
+        dest: /etc/nginx/sites-enabled/{{item}}ballometer.io
         state: link
-      notify: Restart Nginx
       loop:
-        - api
-        - tiles
-        - grafana
+        - api.
+        - tiles.
+        - grafana.
+        - ""
 
-  handlers:
+    - name: Certbot
+      ansible.builtin.shell: certbot --nginx -n -d ballometer.io,www.ballometer.io,api.ballometer.io,tiles.ballometer.io,grafana.ballometer.io --agree-tos --email "mail@example.com"
+      args:
+        creates: /etc/letsencrypt/live/ballometer.io
+
     - name: Restart Nginx
       service:
         name: nginx

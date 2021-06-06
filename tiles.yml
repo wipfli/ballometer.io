@@ -30,6 +30,7 @@
         image: maptiler/tileserver-gl
         state: started
         ports:
-          - "127.0.0.1:3006:80"
+          - "127.0.0.1:3006:8080"
         volumes:
           - "{{ VOLUME_PATH }}:/data"
+        command: tileserver-gl --public_url "https://tiles.ballometer.io"

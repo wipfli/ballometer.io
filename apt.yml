@@ -42,3 +42,4 @@
         - grafana
         - virtualenv
         - certbot
+        - python3-certbot-nginx

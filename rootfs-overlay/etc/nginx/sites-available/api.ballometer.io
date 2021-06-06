@@ -1,6 +1,4 @@
 server {
-    listen 80;
-    listen [::]:80;
 
     server_name api.ballometer.io;
 
@@ -68,4 +66,24 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
+
+    listen [::]:443 ssl; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/dev.ballometer.io/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/dev.ballometer.io/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+    if ($host = api.ballometer.io) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen 80;
+    listen [::]:80;
+
+    server_name api.ballometer.io;
+    return 404; # managed by Certbot
 }

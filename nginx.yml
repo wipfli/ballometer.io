@@ -3,24 +3,26 @@
   tasks:
     - name: Copy sites-available
       ansible.builtin.copy:
-        src: rootfs-overlay/etc/nginx/sites-available/{{item}}.ballometer.io
-        dest: /etc/nginx/sites-available/{{item}}.ballometer.io
+        src: rootfs-overlay/etc/nginx/sites-available/{{item}}ballometer.io
+        dest: /etc/nginx/sites-available/{{item}}ballometer.io
       notify: Restart Nginx
       loop:
-        - api
-        - tiles
-        - grafana
+        - api.
+        - tiles.
+        - grafana.
+        - ""
 
     - name: Enable sites
       file:
-        src: /etc/nginx/sites-available/{{item}}.ballometer.io
-        dest: /etc/nginx/sites-enabled/{{item}}.ballometer.io
+        src: /etc/nginx/sites-available/{{item}}ballometer.io
+        dest: /etc/nginx/sites-enabled/{{item}}ballometer.io
         state: link
       notify: Restart Nginx
       loop:
-        - api
-        - tiles
-        - grafana
+        - api.
+        - tiles.
+        - grafana.
+        - ""
 
   handlers:
     - name: Restart Nginx

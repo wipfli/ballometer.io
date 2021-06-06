@@ -66,5 +66,5 @@ jobs:
     # - name: Ansible influxdb.yml
     #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, influxdb.yml
 
-    # - name: Ansible frontend.yml
-    #   run: ansible-playbook -i ${{ secrets.HOST_IP }}, frontend.yml
+    - name: Ansible frontend.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, frontend.yml

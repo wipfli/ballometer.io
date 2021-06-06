@@ -22,6 +22,11 @@
         - grafana.
         - ""
 
+    - name: Certbot
+      ansible.builtin.shell: certbot --nginx -n -d ballometer.io,www.ballometer.io,api.ballometer.io,tiles.ballometer.io,grafana.ballometer.io --agree-tos --email "mail@example.com"
+      args:
+        creates: /etc/letsencrypt/live/ballometer.io
+
     - name: Restart Nginx
       service:
         name: nginx

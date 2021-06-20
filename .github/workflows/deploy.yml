@@ -56,6 +56,9 @@ jobs:
     - name: Ansible download-sma.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, download-sma.yml
 
+    - name: Ansible download-metar.yml
+      run: ansible-playbook -i ${{ secrets.HOST_IP }}, download-metar.yml
+
     - name: Ansible tiles.yml
       run: ansible-playbook -i ${{ secrets.HOST_IP }}, tiles.yml -e "MBTILES_URL=${{ secrets.MBTILES_URL }} VOLUME_PATH=${{ secrets.VOLUME_PATH }}"
 

@@ -1,0 +1,13 @@
+[Unit]
+Description=Download METAR messages with global coverage from NOAA and store them in InfluxDB
+After=network.target
+
+[Service]
+WorkingDirectory=/root/download-metar
+ExecStart=/root/download-metar/venv/bin/python /root/download-metar/download.py
+Restart=always
+TimeoutStopSec=30
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

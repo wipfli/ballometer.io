@@ -1,0 +1,26 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Clone
+      git:
+        repo: https://github.com/ballometer/download-metar.git
+        dest: /root/download-metar
+
+    - name: Copy service file
+      ansible.builtin.copy:
+        src: rootfs-overlay/etc/systemd/system/download-metar.service
+        dest: /etc/systemd/system/download-metar.service
+
+    - name: Install pip packages
+      pip:
+        name: "{{item}}"
+        virtualenv: /root/download-metar/venv
+      loop:
+        - requests
+        - influxdb
+        - metar
+
+    - name: Check service is running
+      ansible.builtin.systemd:
+        state: started
+        name: download-metar
